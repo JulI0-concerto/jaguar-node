@@ -7,17 +7,13 @@
     owner: root
     group: root
 
-- name: Reload systemd
-  systemd_service:
-    daemon_reload: yes
-
 - name: Enable cpu-performance service
-  systemd_service:
+  systemd:
     name: cpu-performance.service
     enabled: yes
-    state: start
+    state: started
+    daemon_reload: yes
 
----
 - name: Copy cpu-performance.timer systemd service file
   copy:
     src: "../files/cpu-performance.timer"
@@ -26,12 +22,9 @@
     owner: root
     group: root
 
-- name: Reload systemd
-  systemd_service:
-    daemon_reload: yes
-
-- name: Enable cpu-performance service
-  systemd_service:
+- name: Enable cpu-performance service timer
+  systemd:
     name: cpu-performance.timer
     enabled: yes
-    state: start
+    state: started
+    daemon_reload: yes

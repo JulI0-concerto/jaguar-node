@@ -1,8 +1,13 @@
 ---
+- name: 🔥 Gather service facts
+  ansible.builtin.service_facts:
+
 - name: 🔥 Disable UFW
-  community.general.ufw:
-    state: disabled
-  when: ansible_distribution_version == "20.04" or ansible_distribution_version == "22.04"
+  ansible.builtin.systemd:
+    name: ufw
+    state: stopped
+    enabled: no
+  when: "'ufw.service' in ansible_facts.services"
 
 - name: 🔥 Install required system packages
   apt: name={{ item }} state=latest update_cache=yes
@@ -56,20 +61,20 @@
 
 - name: 🔥 Transform dynamic_port_range into desired format
   set_fact:
-    transformed_port_range: "{{ port_range_parts[0] }}:{{ port_range_parts[1] | int - port_range_parts[0] | int }}"
+    transformed_port_range: "{{ port_range_parts[0] }}:{{ port_range_parts[1] }}"
 
 - name: 🔥 Allow ingress solana UDP ports
   iptables:
     chain: INPUT
     protocol: udp
-    destination_port: {{ transformed_port_range }}
+    destination_port: "{{ transformed_port_range }}"
     jump: ACCEPT
 
 - name: 🔥 Allow ingress solana TCP ports
   iptables:
     chain: INPUT
     protocol: tcp
-    destination_port: {{ transformed_port_range }}
+    destination_port: "{{ transformed_port_range }}"
     jump: ACCEPT
 
 - name: 🔥 Set the policy for the INPUT chain to DROP (IPv4)

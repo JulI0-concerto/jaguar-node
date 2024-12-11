@@ -2,7 +2,7 @@
 
 - name: Install Solana watch-tower
   become: true
-  become_user: {{ solana }}
-  cargo:
+  become_user: "{{ solana_user }}"
+  community.general.cargo:
     name: agave-watchtower
-    version: {{ solana_version }}
+    version: "{{ solana_version }}"

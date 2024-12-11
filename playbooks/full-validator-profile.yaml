@@ -61,6 +61,16 @@
     rpc_port: 8899
     rpc_bind_address: "127.0.0.1"
     expected_genesis_hash: "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d"
+    entrypoints:
+      - entrypoint.testnet.solana.com:8001
+      - entrypoint2.testnet.solana.com:8001
+      - entrypoint3.testnet.solana.com:8001
+    known_validators:
+      - 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on
+      - dDzy5SR3AXdYWVqbDEkVFdvSPCtS9ihF5kJkHCtXoFs
+      - Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN
+      - eoKpUABi59aT4rR9HGS3LcMecfut9x7zJyodWWP43YQ
+      - 9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv
     jito:
       enabled: True
       tip_payment_program_pubkey: "T1pyyaTNZsKv2WcRAB8oVnk93mLJw2XzjtVYqCsaHqt"

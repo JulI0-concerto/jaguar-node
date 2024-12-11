@@ -7,11 +7,8 @@
     owner: root
     group: root
 
-- name: Reload systemd
-  systemd_service:
-    daemon_reload: yes
-
 - name: Enable solana alerting service
-  systemd_service:
+  systemd:
     name: solana-alerting
     enabled: yes
+    daemon_reload: yes
