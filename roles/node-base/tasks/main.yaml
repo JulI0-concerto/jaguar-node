@@ -1,0 +1,33 @@
+---
+- name: check solana cli installed
+  stat:
+    path: /home/solana/.local/share/solana/install/active_release/bin/agave-install
+  register: solana_exists
+  tags:
+    - node-base.cli.install
+
+- name: install solana cli
+  import_tasks: install_solana_client.yaml
+  when: not solana_exists.stat.exists
+  tags:
+    - node-base.cli.install
+
+- name: Configure node env
+  import_tasks: configure_node.yaml
+  tags:
+    - node-base.manage.config
+
+- name: Setup logrotate
+  import_tasks: logrotate.yaml
+  tags:
+    - node-base.logrotate
+
+- name: Create solana validator service
+  import_tasks: solana_validator_service.yaml
+  tags:
+    - node-base.service.solana
+
+- name: Install dev tools
+  import_tasks: install_solana_client.yaml
+  tags:
+    - node-base.install_solana_client

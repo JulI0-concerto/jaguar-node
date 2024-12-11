@@ -1,0 +1,10 @@
+[Unit]
+Description=Run cpu-performance.service every 5 minutes
+
+[Timer]
+OnBootSec=0
+OnUnitActiveSec=5min
+Unit=cpu-performance.service
+
+[Install]
+WantedBy=timers.target

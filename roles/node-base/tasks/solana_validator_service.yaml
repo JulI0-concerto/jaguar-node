@@ -1,0 +1,17 @@
+---
+- name: Create solana validator service
+  template:
+    src: solana-validator.service.j2
+    dest: /etc/systemd/system/solana-validator.service
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Reload systemd
+  systemd_service:
+    daemon_reload: yes
+
+- name: Enable solana service
+  systemd_service:
+    name: solana-validator
+    enabled: yes

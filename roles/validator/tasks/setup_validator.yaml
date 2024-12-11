@@ -1,0 +1,10 @@
+---
+- name: create startup script
+  become: true
+  become_user: {{ solana_user }}
+  copy:
+    src: start-node.sh
+    dest: "{{ solana_home }}/start-node.sh"
+    owner: {{ solana_user }}
+    group: {{ solana_user }}
+    mode: "0755"

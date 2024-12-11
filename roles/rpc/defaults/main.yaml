@@ -1,0 +1,10 @@
+---
+solana_user: solana
+solana_home: "/home/{{ solana_user }}"
+secrets_path: "{{ solana_home }}/.secrets"
+env_path: "{{ solana_home }}/.local/share/solana/install/active_release/bin"
+validator_log_path: "{{ validator_log_path }}/agave-validator.log"
+rpc_port: 8899
+rpc_bind_address: 0.0.0.0
+dynamic_port_range: 8000-10000
+expected_genesis_hash: 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d

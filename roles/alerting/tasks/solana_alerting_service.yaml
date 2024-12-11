@@ -1,0 +1,17 @@
+---
+- name: Create solana alerting validator service
+  template:
+    src: solana-alerting.service.j2
+    dest: /etc/systemd/system/solana-alerting.service
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Reload systemd
+  systemd_service:
+    daemon_reload: yes
+
+- name: Enable solana alerting service
+  systemd_service:
+    name: solana-alerting
+    enabled: yes

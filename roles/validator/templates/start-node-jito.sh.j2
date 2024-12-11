@@ -1,0 +1,33 @@
+#!/bin/bash
+export "SOLANA_METRICS_CONFIG=host={{ solana_metrics_url }}"
+exec {{ env_path }}/agave-validator \
+    --identity {{ secrets_path }}/validator-keypair.json \
+    --vote-account {{ secrets_path }}/vote-account-keypair.json \
+    --authorized-voter {{ secrets_path }}/funded-validator-keypair.json \
+{% for known_validator in known_validators %}
+    --known-validator {{ known_validator }} \
+{% endfor %}
+    --only-known-rpc \
+    --private-rpc \
+    --rpc-bind-address 127.0.0.1 \
+    --full-rpc-api \
+    --log {{ validator_log_path }} \
+    --ledger {{ ledger_dir }} \
+    --accounts {{ accounts_dir }} \
+    --snapshots {{ snapshots_dir }} \
+    --maximum-incremental-snapshots-to-retain 2 \
+    --rpc-port {{ rpc_port }} \
+    --dynamic-port-range {{ dynamic_port_range }} \
+    --tip-payment-program-pubkey {{ jito.tip_payment_program_pubkey }} \
+    --tip-distribution-program-pubkey {{ jito.tip_distribution_program_pubkey }} \
+    --merkle-root-upload-authority {{ jito.merkle_root_upload_authority }} \
+    --commission-bps {{ jito.commission_bps }} \
+    --block-engine-url {{ jito.block_engine_url }} \
+    --shred-receiver-address {{ jito.shred_receiver_address }} \
+{% for entrypoint in entrypoints %}
+    --entrypoint {{ entrypoint }} \
+{% endfor %}
+    --expected-genesis-hash {{ expected_genesis_hash }} \
+    --wal-recovery-mode skip_any_corrupted_record \
+    --block-verification-method unified-scheduler \
+    --limit-ledger-size

@@ -1,0 +1,37 @@
+---
+- name: Copy cpu-performance.service systemd service file
+  copy:
+    src: "../files/cpu-performance.service"
+    dest: /etc/systemd/system/cpu-performance.service
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Reload systemd
+  systemd_service:
+    daemon_reload: yes
+
+- name: Enable cpu-performance service
+  systemd_service:
+    name: cpu-performance.service
+    enabled: yes
+    state: start
+
+---
+- name: Copy cpu-performance.timer systemd service file
+  copy:
+    src: "../files/cpu-performance.timer"
+    dest: /etc/systemd/system/cpu-performance.timer
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Reload systemd
+  systemd_service:
+    daemon_reload: yes
+
+- name: Enable cpu-performance service
+  systemd_service:
+    name: cpu-performance.timer
+    enabled: yes
+    state: start

@@ -1,0 +1,15 @@
+---
+- name: Config validator
+  import_tasks: setup_validator.yaml
+  tags:
+    - validator.config_validator
+
+- name: Create unfunded validator keypair
+  import_tasks: create_unfunded_validator_keypair.yaml
+  tags:
+    - validator.unfunded_validator_keypair
+
+- name: Copy utils scripts
+  import_tasks: utils_scripts.yaml
+  tags:
+    - validator.copy.scripts

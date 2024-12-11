@@ -1,0 +1,25 @@
+---
+- name: 🐸 Ensure group solana exists
+  ansible.builtin.group:
+    name: "{{ solana_user }}"
+    state: present
+
+- name: 🐸 Create user solana
+  user:
+    name: "{{ solana_user }}"
+    state: present
+    create_home: yes
+    shell: /bin/bash
+    skeleton: /etc/skel
+    force: yes
+    groups:
+      - "{{ solana_user }}"
+      - syslog
+
+- name: 🐸 Create secrets dir
+  become: yes
+  file:
+    path: "{{ secrets_path }}"
+    state: directory
+    mode: '0700'
+    owner: "{{ solana_user }}"

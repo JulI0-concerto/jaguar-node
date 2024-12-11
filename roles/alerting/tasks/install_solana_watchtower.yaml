@@ -1,0 +1,8 @@
+---
+
+- name: Install Solana watch-tower
+  become: true
+  become_user: {{ solana }}
+  cargo:
+    name: agave-watchtower
+    version: {{ solana_version }}

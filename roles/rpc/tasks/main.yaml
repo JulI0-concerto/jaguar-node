@@ -1,0 +1,5 @@
+---
+- name: Config rpc
+  import_tasks: setup_rpc.yaml
+  tags:
+    - rpv.config_rpc

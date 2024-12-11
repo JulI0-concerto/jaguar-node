@@ -1,0 +1,24 @@
+---
+
+- name: 📦 Install additional packages
+  import_tasks: packages.yaml
+
+- name: 🏎 Config cpu governor performance mode
+  import_tasks: governor.yaml
+
+- name: 🔥 Config firewall
+  import_tasks: firewall.yaml
+  when:
+    use_firewall | bool
+
+- name: 🚫 Config file2ban
+  import_tasks: fail2ban.yaml
+
+- name: 🐸 Create solana user
+  import_tasks: solana_user.yaml
+
+- name: 🔧 Config sysctl
+  import_tasks: sysctl.yaml
+
+- name: ⌚ chronly
+  import_tasks: chronly.yaml

@@ -1,0 +1,12 @@
+---
+solana_user: solana
+validator_name:
+ledger_path: /mnt/solana_ledger/ledger
+accounts_path: /mnt/solana_accounts/accounts
+vote_account_pubkey:
+cluster_rpc_address: http://localhost:8899
+cluster_environment: mainnet-beta
+telegraf_database: v_metrics
+telegraf_urls: http://influx.thevalidators.io:8086
+telegraf_username: v_user
+telegraf_password: thepassword

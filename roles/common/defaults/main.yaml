@@ -1,0 +1,5 @@
+---
+solana_user: solana
+solana_home: "/home/{{ solana_user }}"
+secrets_path: "{{ solana_home }}/.secrets"
+dynamic_port_range: 8000-10000

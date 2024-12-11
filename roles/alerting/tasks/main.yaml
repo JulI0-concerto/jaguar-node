@@ -1,0 +1,10 @@
+---
+- name: Create solana alerting service
+  import_tasks: solana_alerting_service.yaml
+  tags:
+    - alerting.service
+
+- name: install solana-watchtower
+  import_tasks: install_solana_watchtower.yaml
+  tags:
+    - alerting.service
