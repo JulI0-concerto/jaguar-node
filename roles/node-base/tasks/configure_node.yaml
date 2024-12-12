@@ -7,7 +7,7 @@
 - name: Create a validator keypair to transition between active voting and none voting node
   shell: solana-keygen new -s --no-bip39-passphrase -o {{ secrets_path }}/funded-validator-keypair.json
   become: yes
-  become_user: "{{ solana_user}}"
+  become_user: "{{ solana_user }}"
   environment:
     PATH: "{{ env_path }}"
   when: not funded_validator_keypair.stat.exists

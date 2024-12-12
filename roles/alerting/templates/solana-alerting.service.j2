@@ -9,7 +9,7 @@ User=solana
 Restart=on-failure
 Environment=RUST_LOG=info
 Environment=PAGERDUTY_INTEGRATION_KEY={{ pager_duty_key }}
-Environment=IDENTITY={{ validator_identity }}
+Environment=IDENTITY={{ validator_identity_pubkey }}
 
 ExecStart=/home/solana/.cargo/bin/solana-watchtower \
 	--validator-identity=${IDENTITY} \

@@ -28,6 +28,9 @@
           - rpc_bind_address is defined
           - dynamic_port_range is defined
           - expected_genesis_hash is defined
+          - solana_metrics_url is defined
+          - snapshots_path is defined
+          - validator_identity_pubkey is defined
     - name: Ensure jito variables are set if jito is enabled
       assert:
         that:
@@ -49,6 +52,7 @@
     validator_name:
     ledger_path: "/mnt/solana_ledger/ledger"
     accounts_path: "/mnt/solana_accounts/accounts"
+    snapshots_path: "/mnt/solana_snapshots/snapshots"
     vote_account_pubkey:
     cluster_rpc_address: "http://127.0.0.1:8899"
     cluster_environment: "mainnet"
@@ -61,6 +65,8 @@
     rpc_port: 8899
     rpc_bind_address: "127.0.0.1"
     expected_genesis_hash: "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d"
+    solana_metrics_url: "https://metrics.solana.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea"
+    validator_identity_pubkey: "jagFjdCVRSfoMm2yRc6oKaSEbKMJLi1d3G9Yj7Cu8AY"
     entrypoints:
       - entrypoint.testnet.solana.com:8001
       - entrypoint2.testnet.solana.com:8001
@@ -79,6 +85,7 @@
       commission_bps: 800
       block_engine_url: "https://ny.mainnet.block-engine.jito.wtf"
       shred_receiver_address: "141.98.216.96:1002"
+      ntp: "ntp.jito.wtf"
   roles:
     - role: common
     - role: node-base
