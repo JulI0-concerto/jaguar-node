@@ -1,5 +1,5 @@
 {% if jito.ntp is defined and jito.enabled %}
-    server {{ ntp }} prefer
+    server {{ jito.ntp }} prefer
 {% endif %}
 pool ntp.ubuntu.com        iburst maxsources 4
 pool 0.ubuntu.pool.ntp.org iburst maxsources 1

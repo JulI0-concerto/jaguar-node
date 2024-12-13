@@ -4,6 +4,6 @@
   become: true
   become_user: "{{ solana_user }}"
   community.general.cargo:
-    executable: .cargo/bin/cargo
+    executable: "/home/{{ solana_user}}.cargo/bin/cargo"
     name: agave-watchtower
     version: "{{ solana_version }}"

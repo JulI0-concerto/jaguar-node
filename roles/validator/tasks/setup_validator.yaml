@@ -8,3 +8,15 @@
     owner: "{{ solana_user }}"
     group: "{{ solana_user }}"
     mode: "0755"
+  when: not jito.enabled | bool
+
+- name: create startup script
+  become: true
+  become_user: "{{ solana_user }}"
+  template:
+    src: start-node-jito.sh.j2
+    dest: "{{ solana_home }}/start-node.sh"
+    owner: "{{ solana_user }}"
+    group: "{{ solana_user }}"
+    mode: "0755"
+  when: jito.enabled | bool
