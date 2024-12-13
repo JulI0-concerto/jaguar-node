@@ -19,6 +19,7 @@
   become: yes
   become_user: "{{ solana_user }}"
 
+
 - name: remove installer
   file:
     path: /tmp/solana
