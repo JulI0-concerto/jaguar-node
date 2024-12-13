@@ -22,6 +22,7 @@
       - rsyslog
       - update-motd
       - libssl-dev
+      - libudev1=249.11-0ubuntu3.7
       - libudev-dev
       - pkg-config
       - zlib1g-dev
