@@ -2,6 +2,7 @@
 - name: create startup script
   become: true
   become_user: "{{ solana_user }}"
+  become_method: sudo
   template:
     src: start-node.sh.j2
     dest: "{{ solana_home }}/start-node.sh"
