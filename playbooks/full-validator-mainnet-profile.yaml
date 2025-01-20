@@ -66,7 +66,7 @@
     rpc_port: 8899
     rpc_bind_address: "127.0.0.1"
     expected_genesis_hash: "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d"
-    solana_metrics_url: 'export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password"'
+    solana_metrics_url: https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password
     validator_identity_pubkey: ""
     entrypoints:
       - entrypoint.mainnet-beta.solana.com:8001
