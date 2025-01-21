@@ -54,7 +54,6 @@
     accounts_path: "/mnt/solana_accounts/accounts"
     snapshots_path: "/mnt/solana_snapshots/snapshots"
     vote_account_pubkey:
-    vote_account_keypair_path:
     cluster_rpc_address: "http://127.0.0.1:8899"
     remote_cluster_rpc_address: "https://api.mainnet-beta.solana.com"
     cluster_environment: "mainnet"
