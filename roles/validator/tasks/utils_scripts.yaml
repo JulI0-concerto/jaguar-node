@@ -15,3 +15,12 @@
     owner: "{{ solana_user }}"
     group: "{{ solana_user }}"
   when: jito.enabled
+
+- name: Create Paladin build script
+  copy:
+    src: build-paladin.sh
+    dest: "{{ solana_home }}/build-paladin.sh"
+    mode: 0755
+    owner: "{{ solana_user }}"
+    group: "{{ solana_user }}"
+  when: jito.enabled
