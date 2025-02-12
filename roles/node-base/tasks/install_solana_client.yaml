@@ -18,6 +18,8 @@
       shell: /tmp/solana/install
   become: yes
   become_user: "{{ solana_user }}"
+  become_method: sudo
+
 
 - name: remove installer
   file:

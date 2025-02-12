@@ -32,7 +32,6 @@
     mode: 0644
     owner: root
     group: root
-  when: jito_enable
 
 - name: Restart chronyd
   become: true

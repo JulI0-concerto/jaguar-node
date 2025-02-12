@@ -2,7 +2,9 @@
 
 - name: Install Solana watch-tower
   become: true
-  become_user: {{ solana }}
-  cargo:
+  become_user: "{{ solana_user }}"
+  become_method: sudo
+  community.general.cargo:
+    executable: "/home/{{ solana_user }}/.cargo/bin/cargo"
     name: agave-watchtower
-    version: {{ solana_version }}
+    version: "{{ solana_version }}"

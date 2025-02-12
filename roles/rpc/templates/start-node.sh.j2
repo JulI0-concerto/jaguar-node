@@ -8,8 +8,8 @@ exec {{ env_path }}/agave-validator \
     --only-known-rpc \
     --full-rpc-api \
     --no-voting \
-    --ledger {{ ledger_dir }} \
-    --accounts {{ accounts_dir }} \
+    --ledger {{ ledger_path }} \
+    --accounts {{ accounts_path }} \
     --log {{ validator_log_path }} \
     --rpc-port {{ rpc_port }} \
     --rpc-bind-address {{ rpc_bind_address }} \

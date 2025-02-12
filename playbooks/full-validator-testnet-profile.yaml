@@ -1,0 +1,95 @@
+---
+- hosts: all
+  become: yes
+  pre_tasks:
+    - name: Ensure all required variables are set
+      assert:
+        that:
+          - solana_version is defined
+          - solana_user is defined
+          - solana_home is defined
+          - secrets_path is defined
+          - dynamic_port_range is defined
+          - pager_duty_key is defined
+          - validator_name is defined
+          - ledger_path is defined
+          - accounts_path is defined
+          - vote_account_pubkey is defined
+          - cluster_rpc_address is defined
+          - cluster_environment is defined
+          - telegraf_database is defined
+          - telegraf_urls is defined
+          - telegraf_username is defined
+          - telegraf_password is defined
+          - secrets_path is defined
+          - env_path is defined
+          - validator_log_path is defined
+          - rpc_port is defined
+          - rpc_bind_address is defined
+          - dynamic_port_range is defined
+          - expected_genesis_hash is defined
+          - solana_metrics_url is defined
+          - snapshots_path is defined
+          - validator_identity_pubkey is defined
+    - name: Ensure jito variables are set if jito is enabled
+      assert:
+        that:
+          - jito.enabled | bool
+          - jito.tip_payment_program_pubkey is defined
+          - jito.tip_distribution_program_pubkey is defined
+          - jito.merkle_root_upload_authority is defined
+          - jito.commission_bps is defined
+          - jito.block_engine_url is defined
+          - jito.shred_receiver_address is defined
+      when: jito.enabled | bool
+  vars:
+    solana_version: "2.0.18"
+    solana_user: solana
+    solana_home: "/home/solana"
+    secrets_path: "/home/solana/.secrets"
+    dynamic_port_range: "8000-10000"
+    pager_duty_key:
+    validator_name:
+    ledger_path: "/mnt/solana_ledger/ledger"
+    accounts_path: "/mnt/solana_accounts/accounts"
+    snapshots_path: "/mnt/solana_snapshots/snapshots"
+    vote_account_pubkey:
+    cluster_rpc_address: "http://127.0.0.1:8899"
+    remote_cluster_rpc_address: "https://api.mainnet-beta.solana.com"
+    cluster_environment: "mainnet"
+    telegraf_database: v_metrics
+    telegraf_urls: http://influx.thevalidators.io:8086
+    telegraf_username: v_user
+    telegraf_password: thepassword
+    env_path: "/home/solana/.local/share/solana/install/active_release/bin"
+    validator_log_path: "/mnt/solana/log"
+    rpc_port: 8899
+    rpc_bind_address: "127.0.0.1"
+    expected_genesis_hash: "4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY"
+    solana_metrics_url: https://metrics.solana.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea
+    validator_identity_pubkey: ""
+    entrypoints:
+      - entrypoint.testnet.solana.com:8001
+      - entrypoint2.testnet.solana.com:8001
+      - entrypoint3.testnet.solana.com:8001
+    known_validators:
+      - 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on
+      - dDzy5SR3AXdYWVqbDEkVFdvSPCtS9ihF5kJkHCtXoFs
+      - Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN
+      - eoKpUABi59aT4rR9HGS3LcMecfut9x7zJyodWWP43YQ
+      - 9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv
+    jito:
+      enabled: False
+      tip_payment_program_pubkey: "T1pyyaTNZsKv2WcRAB8oVnk93mLJw2XzjtVYqCsaHqt"
+      tip_distribution_program_pubkey: "4R3gSG8BpU4t19KYj8CfnbtRpnT8gtk4dvTHxVRwc2r7"
+      merkle_root_upload_authority: "GZctHpWXmsZC1YHACTGGcHhYxjdRqQvTpYkb9LMvxDib"
+      commission_bps: 800
+      block_engine_url: "https://ny.mainnet.block-engine.jito.wtf"
+      shred_receiver_address: "141.98.216.96:1002"
+      ntp: "ntp.jito.wtf"
+  roles:
+    - role: common
+    - role: node-base
+    - role: validator
+    - role: alerting
+    - role: monitoring

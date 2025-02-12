@@ -11,7 +11,7 @@ User={{ solana_user }}
 LimitNOFILE=1024000
 LogRateLimitIntervalSec=0
 Environment="PATH=/bin:/usr/bin:{{ env_path }}"
-ExecStart=/home/sol/bin/validator.sh
+ExecStart="/home/{{ solana_user }}/start-node.sh"
 
 [Install]
 WantedBy=multi-user.target

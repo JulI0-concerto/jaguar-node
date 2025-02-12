@@ -8,8 +8,6 @@
 
 - name: 🔥 Config firewall
   import_tasks: firewall.yaml
-  when:
-    use_firewall | bool
 
 - name: 🚫 Config file2ban
   import_tasks: fail2ban.yaml

@@ -28,6 +28,6 @@
     - node-base.service.solana
 
 - name: Install dev tools
-  import_tasks: install_solana_client.yaml
+  import_tasks: install_dev_tools.yaml
   tags:
-    - node-base.install_solana_client
+    - node-base.install_dev_tools
