@@ -1,20 +1,31 @@
+---
+
+- name: 🐸 Create secrets dir
+  become: yes
+  file:
+    path: /home/solana/.kolibrio
+    state: directory
+    mode: '0700'
+    owner: solana
+
+
 - name: jito relayer repository
   become: true
   become_user: solana
   git:
-    repo: "{{ jito_relayer_repo }}"
+    repo: "https://github.com/jito-foundation/jito-relayer.git"
     dest: /home/solana/jito-relayer
-    version: v{{ jito_relayer_version }}
+    version: v0.3.1
     recursive: yes
     update: yes
     clone: yes
   tags:
     - jito-relayer.install
 
-- name: build solana
+- name: build relayer
   become: true
   become_user: solana
-  shell: source /home/solana/.cargo/env && cargo build --release
+  shell: source /home/solana/.cargo/env && cargo build --release -j 4
   args:
     chdir: /home/solana/jito-relayer
     executable: /bin/bash
