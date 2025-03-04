@@ -18,13 +18,13 @@ Environment=BLOCK_ENGINE_URL=https://srvr-be.kolibr.io
 Environment=BLOCK_ENGINE_AUTH_SERVICE_URL=https://auth-be.kolibr.io
 Environment=GRPC_BIND_IP=127.0.0.1
 
-ExecStart=/home/solana/.local/share/jito-relayer/release/jito-transaction-relayer \
+ExecStart=/home/solana/jito-relayer/target/release/jito-transaction-relayer \
 	--keypair-path=/home/solana/.kolibrio/relayer-keypair.json \
 	--signing-key-pem-path=/home/solana/.kolibrio/private.pem \
 	--verifying-key-pem-path=/home/solana/.kolibrio/public.pem \
 	--rpc-servers=http://127.0.0.1:8899 \
 	--websocket-servers=ws://127.0.0.1:8900 \
-    --staked-nodes-overrides="/home/solana/staked-nodes-overrides.yaml" \
+    --staked-nodes-overrides=/home/solana/staked-nodes-overrides.yaml \
     --forward-all \
     --packet_delay_ms=0
 
