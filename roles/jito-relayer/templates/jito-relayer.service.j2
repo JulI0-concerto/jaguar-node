@@ -17,13 +17,13 @@ Environment=SOLANA_METRICS_CONFIG="host=http://metrics.jito.wtf:8086,db=relayer,
 Environment=BLOCK_ENGINE_URL={{ block_engine_url }}
 Environment=GRPC_BIND_IP=127.0.0.1
 
-ExecStart=/home/solana/.local/share/jito-relayer/release/jito-transaction-relayer \
+ExecStart=/home/solana/jito-relayer/target/release/jito-transaction-relayer \
 	--keypair-path=/home/solana/.secrets/relayer-keypair.json \
 	--signing-key-pem-path=/home/solana/.secrets/private.pem \
 	--verifying-key-pem-path=/home/solana/.secrets/public.pem \
 	--rpc-servers=http://127.0.0.1:8899 \
 	--websocket-servers=ws://127.0.0.1:8900 \
-    --staked-nodes-overrides="/home/solana/staked-nodes-overrides.yaml" \
+    --staked-nodes-overrides=/home/solana/staked-nodes-overrides.yaml \
     --forward-all \
     --packet_delay_ms={{ packet_delay_ms }}
 
